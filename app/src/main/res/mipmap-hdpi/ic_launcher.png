@@ -1,0 +1,76 @@
+package com.pareandroid.rumahsakit.adapter;
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.pareandroid.rumahsakit.ListDataDokter;
+import com.pareandroid.rumahsakit.R;
+import com.pareandroid.rumahsakit.inputdata;
+import com.pareandroid.rumahsakit.model.ModelApi;
+
+import java.util.List;
+
+public class AdapterOnlineDokter extends RecyclerView.Adapter<AdapterOnlineDokter.DokterViewHolder> {
+    private List<ModelApi>modelApis;
+    AlertDialog.Builder alert;
+    TextView tv_nama,tv_nip,tv_tmt,tv_masakerja,tv_keterangan;
+    private Context context;
+
+    public AdapterOnlineDokter(List<ModelApi>modelApis){
+        this.modelApis = modelApis;
+    }
+
+    public AdapterOnlineDokter(Context context) {
+        this.context = context;
+    }
+
+
+    @NonNull
+    @Override
+    public AdapterOnlineDokter.DokterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.content,viewGroup,false);
+
+
+        return new DokterViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final DokterViewHolder dokterViewHolder, int i) {
+
+
+
+        final ModelApi model = modelApis.get(i);
+
+        i+=1;
+
+        dokterViewHolder.tv_nama.setText("Nama :" + model.getNama());
+        dokterViewHolder.tv_masakerja.setText("Masa Kerja :" + model.getMasaKerja());
+        dokterViewHolder.tv_keterangan.setText("Spesialis :"+model.getKeterangan());
+        dokterViewHolder.tv_no.setText(""+i);
+        dokterViewHolder.tv_nip.setText("NIP :"+model.getNip());
+        dokterViewHolder.tv_tmt.setText("TMT :"+model.getTmt());
+
+
+//        dokterViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                final String name = dokterViewHolder.tv_nama.getText().toString();
+////                final String nip = dokterViewHolder.tv_nip.getText().toString();
+////                final String tmt = dokterViewHolder.tv_tmt.getText().toString();
+////                final String masakerja = dokterViewHolder.tv_masakerja.getText().toString();
+////                final String keterangan = dokterViewHolder.tv_keterangan.getText().toString();
+//                Intent intent = new Intent(v.getContext(), inputdata.class);
+//                intent.putExtra("nama",model.getNama());
+//                intent.putExtra("nip", model.getNip());
+//                intent.putExtra("tmt", model.getTmt());
+//        
